@@ -7,6 +7,7 @@ const express = require('express');
 const methodOverride = require('method-override');
 const mongoose = require ('mongoose');
 const app = express();
+const session = require('express-session');
 const db = mongoose.connection;
 //___________________
 //Port
@@ -33,6 +34,16 @@ db.on('disconnected', () => console.log('mongod disconnected'));
 
 //___________________
 //Middleware
+// Body parser middleware: give us access to req.body
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  session({
+      secret: process.env.SECRET,
+      resave: false,
+      saveUninitialized: false
+  })
+);
 //___________________
 
 //use public folder for static assets
@@ -51,9 +62,22 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+  res.render('index.ejs' , {
+    currentUser: req.session.currentUser
+  });
 });
 
+// Routes / Controllers
+const userController = require('./controllers/users');
+app.use('/users', userController);
+
+const sessionsController = require('./controllers/sessions');
+app.use('/sessions', sessionsController);
+
+// Temporary root route. Please remove me when you add views:
+app.get("/", (req, res) => {
+  res.send("Root route");
+});
 //___________________
 //Listener
 //___________________
