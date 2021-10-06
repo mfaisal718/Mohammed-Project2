@@ -75,7 +75,7 @@ app.use('/users', userController);
 const sessionsController = require('./controllers/sessions');
 app.use('/sessions', sessionsController);
 
-const jordansController = require('./controllers/jordans');
+const jordansController = require('./controllers/Jordans');
 app.use('/jordans', jordansController);
 app.get('/',(req, res) => {
   res.redirect('/sessions/new')
