@@ -20,6 +20,7 @@
 			<% jordans.forEach(jordans => { %>
 				<li>
 					<a href="/jordans/<%=jordans._id %>"> <%=jordans.name %> </a>
+					<img src="<%=jordans.img%>" alt="jordans">
 					<form style="display: inline; margin-left: 15px;" 
 						 action="/jordans/<%= jordans.id %>?_method=DELETE" method="POST">
 							<input type="submit" value="DELETE"/>

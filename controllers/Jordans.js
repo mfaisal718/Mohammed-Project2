@@ -17,6 +17,7 @@ jordansRouter.get('/seed', (req,res)=> {
 // Index - display all jordans
 jordansRouter.get('/', (req, res) => {
     jordans.find({}, (error, allJordans) => {
+        console.log(allJordans)
         res.render('index.ejs', {
             jordans: allJordans,
         currentUser: req.session.currentUser

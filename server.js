@@ -62,11 +62,11 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
-app.get('/' , (req, res) => {
-  res.render('index.ejs' , {
-    currentUser: req.session.currentUser
-  });
-});
+//app.get('/jordans' , (req, res) => {
+  //res.render('index.ejs' , {
+    //currentUser: req.session.currentUser
+  //});
+//});
 
 // Routes / Controllers
 const userController = require('./controllers/users');
@@ -77,11 +77,13 @@ app.use('/sessions', sessionsController);
 
 const jordansController = require('./controllers/jordans');
 app.use('/jordans', jordansController);
-
+app.get('/',(req, res) => {
+  res.redirect('/sessions/new')
+})
 // Temporary root route. Please remove me when you add views:
-app.get("/", (req, res) => {
-  res.send("Root route");
-});
+//app.get("/", (req, res) => {
+  //res.send("Root route");
+//});
 //___________________
 //Listener
 //___________________
