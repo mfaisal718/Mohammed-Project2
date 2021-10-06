@@ -4,6 +4,7 @@ require('dotenv').config()
 //Dependencies
 //___________________
 const express = require('express');
+const jordans = require("./models/jordans.js")
 const methodOverride = require('method-override');
 const mongoose = require ('mongoose');
 const app = express();
@@ -73,6 +74,9 @@ app.use('/users', userController);
 
 const sessionsController = require('./controllers/sessions');
 app.use('/sessions', sessionsController);
+
+const jordansController = require('./controllers/jordans');
+app.use('/jordans', jordansController);
 
 // Temporary root route. Please remove me when you add views:
 app.get("/", (req, res) => {

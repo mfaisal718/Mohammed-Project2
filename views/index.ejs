@@ -11,6 +11,24 @@
 <body>
 	<%- include('./partials/nav.ejs')  %>
 	<h1>Home Page</h1>
+		<nav>
+			<a href="/jordans/new">Add a New Jordan</a>
+		</nav>
+		<h1>Jordans index page</h1>
+		<ul>
+
+			<% jordans.forEach(jordans => { %>
+				<li>
+					<a href="/jordans/<%=jordans._id %>"> <%=jordans.name %> </a>
+					<form style="display: inline; margin-left: 15px;" 
+						 action="/jordans/<%= jordans.id %>?_method=DELETE" method="POST">
+							<input type="submit" value="DELETE"/>
+					<a href="/jordans/<%=jordans._id %>/edit">Edit</a>
+				</form>
+				</li>
+			<% }) %>
+		
+		</ul>
 </body>
 
 </html>

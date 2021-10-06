@@ -3,7 +3,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const sessionsRouter = express.Router();
 const User = require('../models/user.js');
-
+const jordans = require("../models/jordans.js");
 // New (login page)
 sessionsRouter.get('/new', (req, res) => {
 	res.render('sessions/new.ejs' , {
@@ -40,7 +40,7 @@ sessionsRouter.delete('/', (req, res) => {
           req.session.currentUser = foundUser;
           
           // redirect back to our home page
-          res.redirect("/");
+          res.redirect("/jordans");
         } else {
           // if the passwords don't match
           res.send("Oops! Invalid credentials. Please check your password and try again.")
