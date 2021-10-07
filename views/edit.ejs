@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style.css">
     <title>Jordans List</title>
 </head>
 
@@ -14,14 +17,14 @@
         name: <input type="text" name="name" value="<%=jordans.name%>" />
         <br />
         description: <input type="text" name="description" value="<%=jordans.description%>" />
-        <br/>
-        <img img: <input type="text" name="img" value="<%=jordans.img%>">/>
-        <br/>
-        price: <input type="number" name="price" value="<%=jordans.price%>" /> 
-        <br/>
+        <br />
+        img: <input type="text" name="img" value="<%=jordans.img%>">
+        <br />
+        price: <input type="number" name="price" value="<%=jordans.price%>" />
+        <br />
         qty: <input type="number" name="qty" value="<%=jordans.qty%>" />
-        <br/> 
-        <input type="submit" value="Submit Changes" />
+        <br />
+        <input class="button is-success" type="submit" value="Submit Changes" />
     </form>
 </body>
 

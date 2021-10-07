@@ -5,21 +5,30 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>MEEN Auth Starter</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/style.css">
+	<title>Jordans Auth Starter</title>
 </head>
 
 <body>
-	<%- include('../partials/nav.ejs')  %>
-	<h1>Register</h1>
-	<form action='/users' method='POST'>
-		<label for="email">Email:</label>
-		<input type="email" name="email" id="email" />
+	<%- include('../partials/nav.ejs') %>
+		<h1>Register</h1>
+		<form action='/users' method='POST'>
+			<label for="email"></label>
+			<input type="email" name="email" placeholder="email" />
+			<span class="icon is-small is-left">
+				<i class="fas fa-envelope"></i></span>
 
-		<label for="password">Password:</label>
-		<input type="password" name="password" id="password" />
 
-		<input type="submit" value="Register">
-	</form>
+			<label for="password"></label>
+			<input type="password" name="password" placeholder="password" />
+			<span class="icon is-small is-left">
+				<i class="fas fa-lock"></i>
+			</span>
+
+			<input class="button is-success" type="submit" value="Register">
+		</form>
 </body>
 
 </html>

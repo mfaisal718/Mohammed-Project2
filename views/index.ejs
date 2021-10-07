@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jordans X!</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-	<%- include('./partials/nav.ejs')  %>
-	<h1>Home Page</h1>
-		<nav>
-			<a href="/jordans/new">Add a New Jordan</a>
-		</nav>
-		<h1>Jordans index page</h1>
-		<ul>
+	<%- include('./partials/nav.ejs') %>
+		<a href="/jordans/new" style="color:white">Add a New Jordan</a>
+		<section class="section">
+			<div class="container">
+				<h1 class="title" style="color:white">
+					Jordans For Sale
+				</h1>
+				<% jordans.forEach(jordans=> { %>
+					<div class="card">
+						<div class="card-content">
+							<a href="/jordans/<%=jordans._id %>">
+								<strong>
+									<%=jordans.name %> </a></strong>
+							<br>
+							<a href="/jordans/<%=jordans._id %>"> $<%=jordans.price %> </a><a
+								href="/jordans/<%=jordans._id %>">Qty: <%=jordans.qty%> </a>
+							<figure class="image is-128x128"><img src="<%=jordans.img%>" alt="jordans"></figure>
+						</div>
+						<div class="card-footer">
+							<form class="card-footer-item" action="/jordans/<%= jordans.id %>?_method=DELETE"
+								method="POST">
+								<input type="submit" class="button is-danger" value="DELETE" />
+								<a class="card-footer-item" href="/jordans/<%=jordans._id %>/edit">EDIT</a>
+							</form>
+							<form action="/jordans/<%=jordans._id%>?_method=PUT" method="POST" class="card-footer-item">
+								<% if (jordans.qty>0 ) { %>
+									<input type="hidden" name="qty" value="<%=(parseInt(jordans.qty)-1 ).toString() %>">
+									<input id="buy" type="submit" value="BUY" class="button is-success">
+									<% } else {%>
+										<p>OUT OF STOCK</p>
+										<input type="off" type="submit" name="qty" value="BUY" disabled="true"
+											class="button is-danger">
+										<%}%>
+							</form>
 
-			<% jordans.forEach(jordans => { %>
-				<li>
-					<a href="/jordans/<%=jordans._id %>"> <%=jordans.name %> </a>
-					<img src="<%=jordans.img%>" alt="jordans">
-					<form style="display: inline; margin-left: 15px;" 
-						 action="/jordans/<%= jordans.id %>?_method=DELETE" method="POST">
-							<input type="submit" value="DELETE"/>
-					<a href="/jordans/<%=jordans._id %>/edit">Edit</a>
-				</form>
-				</li>
-			<% }) %>
-		
-		</ul>
+						</div>
+					</div>
+					<% }) %>
+			</div>
+			</div>
+		</section>
 </body>
 
 </html>
+
+<body>
