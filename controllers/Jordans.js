@@ -3,15 +3,15 @@ const { application } = require("express");
 const express = require("express");
 const jordansRouter = express.Router();
 const jordans = require("../models/jordans.js");
- 
+
 //Seed
 const jordansSeed = require('../models/jordansSeed.js')
 
-jordansRouter.get('/seed', (req,res)=> {
-    jordans.deleteMany({}, (error, allJordans) => {});
+jordansRouter.get('/seed', (req, res) => {
+    jordans.deleteMany({}, (error, allJordans) => { });
     jordans.create(jordansSeed, (error, data) => {
-            res.redirect('/jordans');
-        }
+        res.redirect('/jordans');
+    }
     );
 });
 // Index - display all jordans
@@ -20,7 +20,7 @@ jordansRouter.get('/', (req, res) => {
         console.log(allJordans)
         res.render('index.ejs', {
             jordans: allJordans,
-        currentUser: req.session.currentUser
+            currentUser: req.session.currentUser
         });
     });
 });
@@ -50,12 +50,12 @@ jordansRouter.put('/:id', (req, res) => {
         //if not checked, req.body.completed is undefined
         req.body.completed = false;
     }
-	jordans.findByIdAndUpdate(req.params.id, req.body, {
-		new: true
-	}, (error, updatedJordans) => {
-		res.redirect(`/jordans/${req.params.id}`);
-	});
-	//res.send(req.body);
+    jordans.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+    }, (error, updatedJordans) => {
+        res.redirect(`/jordans/${req.params.id}`);
+    });
+    //res.send(req.body);
 });
 // Create - create a new jordans
 jordansRouter.post("/", (req, res) => {
@@ -67,11 +67,11 @@ jordansRouter.post("/", (req, res) => {
 });
 // Edit - display form to update a book
 jordansRouter.get('/:id/edit', (req, res) => {
-	jordans.findById(req.params.id, (error, foundJordans) => {
-		res.render('edit.ejs', {
-			jordans: foundJordans
-		});
-	});
+    jordans.findById(req.params.id, (error, foundJordans) => {
+        res.render('edit.ejs', {
+            jordans: foundJordans
+        });
+    });
 });
 // Show - display a single book
 // Show
