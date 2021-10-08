@@ -35,7 +35,8 @@
 								<input type="submit" class="button is-danger" value="DELETE" />
 								<a class="card-footer-item" href="/jordans/<%=jordans._id %>/edit">EDIT</a>
 							</form>
-							<form action="/jordans/<%=jordans._id%>?_method=PUT" method="POST" class="card-footer-item">
+							<form action="/jordans/<%=jordans._id%>?_method=PUT" method="POST" style="color:white"
+								class="card-footer-item">
 								<% if (jordans.qty>0 ) { %>
 									<input type="hidden" name="qty" value="<%=(parseInt(jordans.qty)-1 ).toString() %>">
 									<input id="buy" type="submit" value="BUY" class="button is-success">
